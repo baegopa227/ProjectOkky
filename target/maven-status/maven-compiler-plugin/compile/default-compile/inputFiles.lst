@@ -1,0 +1,17 @@
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/HomeVO.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/utils/Listparam.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/vo/BoardVO.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/board/BoardRepository.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/utils/Paging.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/board/BoardService.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/vo/ErrorVO.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/utils/CookieUtil.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/board/BoardController.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/utils/ConfProperties.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/filter/OkkyInterceptor.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/utils/MybatisConnectUtils.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/utils/Crypto.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/filter/CorsFilter.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/mapper/InfoMapper.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/test/DBConnectionTest.java
+/root/Desktop/eclipse-workspace/okky/src/main/java/com/okky/HomeController.java

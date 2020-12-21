@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user.mappers.userMapper">
+	
+	<select id="CheckUserInfoAll" resultType="int">
+		<include refid="CheckUserInfo"></include>
+		where 1=1
+		<if test="nickname != null and nickname != ''">
+				AND nickname = #{nickname}
+		</if>
+		<if test="uno != null and uno != ''">
+				AND uno = #{uno}
+		</if>
+		<if test="phone != null and phone != ''">
+				AND phone = #{phone}
+		</if>
+		<if test="email != null and email != ''">
+				AND email = #{email}
+		</if>
+		;
+	</select>
+	
+	
+	<select id="CheckUserAll" resultType="int">
+		<include refid="CheckUser"></include>
+		<if test="account != null and account != ''">
+			<where>
+				AND account = #{account};
+			</where>
+		</if>
+	</select>
+	
+	
+	<select id="GetCountUser" resultType="int">
+		SELECT count(*) FROM
+		user_table
+	</select>
+
+	<sql id="CheckUserInfo">
+		SELECT COUNT(*)
+		FROM user_info_table
+	</sql>
+
+	<sql id="CheckUser">
+		SELECT COUNT(*)
+		FROM user_table
+	</sql>
+
+	<select id="CheckUserByAccount" resultType="int">
+		<include refid="CheckUser" />
+		WHERE account = #{account};
+	</select>
+	
+
+	<select id="CheckUserInfoByNickname" resultType="int">
+		<include refid="CheckUserInfo" />
+		WHERE nickname = #{nickname};
+	</select>
+
+	<select id="CheckUserInfoByUno" resultType="int">
+		<include refid="CheckUserInfo" />
+		WHERE uno = #{uno};
+	</select>
+
+	<select id="CheckUserInfoByPhone" resultType="int">
+		<include refid="CheckUserInfo" />
+		WHERE phone = #{phone};
+	</select>
+
+	<select id="CheckUserInfoByEmail" resultType="int">
+		<include refid="CheckUserInfo" />
+		WHERE email = #{email};
+	</select>
+
+	<!-- user_info_table 데이터 삽입 -->
+	<insert id="UserInfoInsert"
+		parameterType="com.okky.vo.UserInfoVO" useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO
+		user_info_table(name,nickname,sex,uno,phone,email,address,cdate)
+		values
+		(#{name},#{nickname},#{sex},#{uno},#{phone},#{email},#{address},now())
+
+	</insert>
+
+
+
+	<!-- user_table 데이터 삽입 -->
+	<insert id="UserInsert" parameterType="com.okky.vo.UserVO">
+		INSERT INTO
+		user_table(uid,account,passwd,cdate)
+		values
+		(#{uid},#{account},AES_ENCRYPT(#{passwd},SHA2("1234567890",512)),now())
+
+	</insert>
+
+</mapper>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board.mappers.boardMapper">
+
+
+	<!-- board_table 카운트 -->
+	<select id="boardTableGetCount" resultType="Integer">
+		select count(*) from
+		board_table bt
+		left join thumbnail_table tt on tt.bcid = bt.id
+		where
+		bt.title like '%${title}%'
+	</select>
+
+
+	<!-- board_table 리스트 -->
+	<select id="boardTableSelect" resultType="com.okky.vo.BoardVO">
+		select * from
+		board_table bt
+		left join thumbnail_table tt on tt.bcid = bt.id
+		where
+		bt.title like '%${title}%' order by id asc
+		limit
+		${index} , 10
+	</select>
+
+
+	<!-- board_table 데이터 삽입 -->
+	<insert id="boardTableInsert"
+		parameterType="com.okky.vo.BoardVO" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+		board_table(uid,bid,title,content,cdate)
+		values
+		(#{uid},1,#{title},#{content},#{cdate})
+
+	</insert>
+
+
+	<!-- board_table 데이터 업데이트 -->
+	<update id="boardTableUpdate"
+		parameterType="com.okky.vo.BoardVO">
+		update board_table set title=#{title},
+		content=#{content}, cdate=#{cdate}
+		where id = #{id}
+	</update>
+
+	<!-- board_table 데이터 삭제 -->
+	<delete id="boardTableDelete">
+		delete from board_table where id = #{id}
+	</delete>
+
+	<!-- thumbnail_table 데이터 삽입 -->
+	<insert id="thumbnailTableInsert">
+		insert into thumbnail_table(bcid, thumbnail_url)
+		values (#{bcid},#{thumbnail_url})
+	</insert>
+
+
+	<!-- thumbnail_table 데이터 리스트 -->
+	<select id="thumbnailTableSelect"
+		resultType="com.okky.vo.ThumbnailVO">
+		select * from thumbnail_table where bcid = #{bcid}
+	</select>
+
+	<update id="thumbnailTableUpdate" parameterType="com.okky.vo.ThumbnailVO">
+		update thumbnail_table set thumbnail_url=#{thumbnail_url} where bcid =
+		#{bcid}
+	</update>
+
+	<delete id="thumbnailTableDelete">
+		delete from thumbnail_table where bcid = #{bcid}
+	</delete>
+
+</mapper>
